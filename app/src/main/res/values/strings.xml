@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Inventory Tracker</string>
+
+    <string name="add_products">No data found. Add new products!</string>
+
+    <string name="name_hint">Product name</string>
+    <string name="quantity_hint">Quantity</string>
+    <string name="price_hint">Price</string>
+    <string name="email_hint">Supplier email</string>
+    <string name="image_hint">Image URL</string>
+    <string name="add_product_button">Add New Product</string>
+    <string name="no_data">No data found</string>
+
+</resources>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_label"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/no_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_data"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/detail_name"
+                style="@style/ItemDetailTextStyle"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <ImageView
+                android:id="@+id/detail_image"
+                android:layout_width="@dimen/image_thumbnail_width"
+                android:layout_height="@dimen/image_thumbnail_height" />
+
+            <TextView
+                android:id="@+id/detail_quantity"
+                style="@style/ItemDetailTextStyle"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/detail_price"
+                style="@style/ItemDetailTextStyle"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/detail_supplier"
+                style="@style/ItemDetailTextStyle"
+                android:textAppearance="?android:textAppearanceMedium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/detail_sale_button"
+                        style="@style/ButtonStyle"
+                        android:text="Sell" />
+
+                    <Button
+                        android:id="@+id/detail_order_button"
+                        style="@style/ButtonStyle"
+                        android:text="Order" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+
+                    <Button
+                        android:id="@+id/detail_receive_button"
+                        style="@style/ButtonStyle"
+                        android:text="Receive" />
+
+                    <Button
+                        android:id="@+id/detail_delete_button"
+                        style="@style/ButtonStyle"
+                        android:text="Delete" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
