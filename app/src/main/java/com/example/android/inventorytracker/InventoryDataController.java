@@ -9,7 +9,6 @@ import android.util.Log;
 import java.util.ArrayList;
 
 /**
- * Created by jleath on 6/28/2016.
  * A class with utitlity methods for working with the inventory database.
  */
 public class InventoryDataController {
@@ -38,7 +37,9 @@ public class InventoryDataController {
         db.close();
     }
 
-    // Returns a cursor with the values of the columns for a given row id.
+    /**
+     * Returns a cursor with the values of the columns for a given row id.
+     */
     public InventoryItem read(String rowId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT ROWID, * FROM " + InventoryContract.Inventory.TABLE_NAME + " WHERE ROWID = " + rowId;
@@ -50,7 +51,9 @@ public class InventoryDataController {
         return buildInventoryItem(cursor);
     }
 
-    // Returns an arraylist with the values of all the items in the database.
+    /**
+     * Return an arraylist of all the InventoryItems stored in the database.
+     */
     public ArrayList<InventoryItem> readAll() {
         ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -66,19 +69,14 @@ public class InventoryDataController {
         return items;
     }
 
-    // Delete a single row from the database.
+    /**
+     * Delete the row associated with the id productId from the table.
+     */
     public void delete(int productId) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String selectQuery = "ROWID =? ";
         String[] selectArgs = {Integer.toString(productId)};
         db.delete(InventoryContract.Inventory.TABLE_NAME, selectQuery, selectArgs);
-        db.close();
-    }
-
-    // Helper method for clearing the database. This is only useful for testing and debugging. Not used in the app.
-    public void deleteAll() {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.delete(InventoryContract.Inventory.TABLE_NAME, null, null);
         db.close();
     }
 
@@ -96,7 +94,9 @@ public class InventoryDataController {
         db.close();
     }
 
-    //  a helper function that takes a cursor and builds an InventoryItem object from it to return
+    /**
+     * a helper function that takes a cursor and builds an InventoryItem from the data stored in it
+     */
     public InventoryItem buildInventoryItem(Cursor cursor) {
         int itemId = cursor.getInt(0);
         String itemName = cursor.getString(2);
@@ -107,5 +107,12 @@ public class InventoryDataController {
         InventoryItem result = new InventoryItem(itemName, itemSupplier, itemImage, itemPrice, itemQuantity);
         result.setId(itemId);
         return result;
+    }
+
+    // Helper method for clearing the database. This is only useful for testing and debugging. Not used in the app.
+    public void deleteAll() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(InventoryContract.Inventory.TABLE_NAME, null, null);
+        db.close();
     }
 }

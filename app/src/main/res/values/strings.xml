@@ -10,5 +10,11 @@
     <string name="image_hint">Image URL</string>
     <string name="add_product_button">Add New Product</string>
     <string name="no_data">No data found</string>
+    <string name="delete">Delete</string>
+    <string name="receive">Receive</string>
+    <string name="order">Order</string>
+    <string name="sell">Sell</string>
+    <string name="add_new_product">Add new product</string>
+    <string name="sample_product">Sample Product</string>
 
 </resources>

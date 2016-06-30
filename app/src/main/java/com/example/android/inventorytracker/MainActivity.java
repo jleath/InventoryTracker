@@ -25,32 +25,16 @@ public class MainActivity extends AppCompatActivity {
                         Stetho.defaultInspectorModulesProvider(this))
                 .build();
 
-        final InventoryDataController controller = new InventoryDataController(MainActivity.this);
-
         // build and hook in adapter
-        InventoryItemAdapter adapter = new InventoryItemAdapter(MainActivity.this, controller.readAll());
-        final ListView listView = (ListView) findViewById(R.id.inventory_list);
-        listView.setAdapter(adapter);
-
-        // display "no data" message if there is no data
-        if (adapter.getCount() == 0) {
-            ((TextView) findViewById(R.id.no_data)).setVisibility(View.VISIBLE);
-        } else {
-            ((TextView) findViewById(R.id.no_data)).setVisibility(View.GONE);
-        }
+        populateListView();
 
         // because other screens may change the data in our database, reload the items on the main screen
         // each time it gains focus
+        ListView listView = (ListView) findViewById(R.id.inventory_list);
         listView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                InventoryItemAdapter adapter = new InventoryItemAdapter(MainActivity.this, controller.readAll());
-                listView.setAdapter(adapter);
-                if (adapter.getCount() == 0) {
-                    ((TextView) findViewById(R.id.no_data)).setVisibility(View.VISIBLE);
-                } else {
-                    ((TextView) findViewById(R.id.no_data)).setVisibility(View.GONE);
-                }
+                populateListView();
             }
         });
 
@@ -63,5 +47,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    // Populates the listview on the mainactivity screen
+    private void populateListView() {
+        ListView lv = (ListView) findViewById(R.id.inventory_list);
+        InventoryItemAdapter adapter = new InventoryItemAdapter(MainActivity.this,
+                new InventoryDataController(MainActivity.this).readAll());
+        lv.setAdapter(adapter);
+        if (adapter.getCount() == 0) {
+            ((TextView) findViewById(R.id.no_data)).setVisibility(View.VISIBLE);
+        } else {
+            ((TextView) findViewById(R.id.no_data)).setVisibility(View.GONE);
+        }
     }
 }

@@ -2,42 +2,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:paddingBottom="8dp"
-    android:orientation="vertical">
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingBottom="8dp">
 
     <TextView
         android:id="@+id/name_label"
         style="@style/InventoryListTextStyle"
-        android:text="Sample Product"
         android:textAppearance="?android:textAppearanceLarge"/>
 
     <TextView
         android:id="@+id/id_label"
         style="@style/InventoryListTextStyle"
         android:layout_below="@id/name_label"
-        android:text="12345"
         android:visibility="gone" />
 
     <TextView
         android:id="@+id/quantity_label"
         style="@style/InventoryListTextStyle"
         android:layout_below="@id/id_label"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="Quantity: 152" />
+        android:textAppearance="?android:textAppearanceMedium" />
 
     <TextView
         android:id="@+id/price_label"
         style="@style/InventoryListTextStyle"
         android:layout_below="@id/quantity_label"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="Price: $1522.98" />
+        android:textAppearance="?android:textAppearanceMedium" />
 
     <Button
         android:id="@+id/list_item_sale_button"
         style="@style/ButtonStyle"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="Sell" />
+        android:text="@string/sell" />
 
 </RelativeLayout>

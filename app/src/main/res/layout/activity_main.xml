@@ -13,17 +13,13 @@
     <Button
         android:id="@+id/add_new_product_button"
         style="@style/ButtonStyle"
-        android:layout_gravity="right"
-        android:text="Add new product" />
+        android:layout_gravity="end"
+        android:text="@string/add_new_product" />
 
     <TextView
         android:id="@+id/no_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/add_products"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:visibility="gone" />
+        style="@style/NoDataText"
+        android:text="@string/add_products" />
 
     <ListView
         android:id="@+id/inventory_list"
@@ -31,4 +27,5 @@
         android:layout_height="wrap_content"
         android:dividerHeight="2dp"
         android:orientation="vertical"></ListView>
+
 </LinearLayout>

@@ -3,7 +3,10 @@
     android:id="@+id/item_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:orientation="vertical">
 
     <ScrollView
@@ -23,12 +26,8 @@
 
             <TextView
                 android:id="@+id/no_data"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/no_data"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:visibility="gone" />
+                style="@style/NoDataText"
+                android:text="@string/no_data" />
 
             <TextView
                 android:id="@+id/detail_name"
@@ -69,31 +68,31 @@
                     <Button
                         android:id="@+id/detail_sale_button"
                         style="@style/ButtonStyle"
-                        android:text="Sell" />
+                        android:text="@string/sell" />
 
                     <Button
                         android:id="@+id/detail_order_button"
                         style="@style/ButtonStyle"
-                        android:text="Order" />
+                        android:text="@string/order" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:orientation="horizontal">
 
 
                     <Button
                         android:id="@+id/detail_receive_button"
                         style="@style/ButtonStyle"
-                        android:text="Receive" />
+                        android:text="@string/receive" />
 
                     <Button
                         android:id="@+id/detail_delete_button"
                         style="@style/ButtonStyle"
-                        android:text="Delete" />
+                        android:text="@string/delete" />
                 </LinearLayout>
             </LinearLayout>
 
