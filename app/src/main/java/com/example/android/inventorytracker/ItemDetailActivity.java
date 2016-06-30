@@ -30,6 +30,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String productId = extras.getString("PRODUCT_ID");
+            final int prodId = Integer.parseInt(productId);
             InventoryDataController controller = new InventoryDataController(this);
             InventoryItem currentItem = controller.read(productId);
 
@@ -56,6 +57,15 @@ public class ItemDetailActivity extends AppCompatActivity {
         } else {
             TextView error = (TextView) findViewById(R.id.no_data);
             error.setVisibility(View.VISIBLE);
+            Button sellButton = (Button) findViewById(R.id.detail_sale_button);
+            Button orderButton = (Button) findViewById(R.id.detail_order_button);
+            Button receiveButton = (Button) findViewById(R.id.detail_receive_button);
+            Button deleteButton = (Button) findViewById(R.id.detail_delete_button);
+
+            sellButton.setVisibility(View.GONE);
+            orderButton.setVisibility(View.GONE);
+            receiveButton.setVisibility(View.GONE);
+            deleteButton.setVisibility(View.GONE);
         }
 
         // build functionality for delete button
