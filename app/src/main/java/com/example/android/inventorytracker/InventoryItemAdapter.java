@@ -24,26 +24,34 @@ public class InventoryItemAdapter extends ArrayAdapter<InventoryItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
         // build a new view if we don't have any lying around
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.inventory_list_item, parent, false);
+            holder = new ViewHolder();
+            holder.name = (TextView) convertView.findViewById(R.id.name_label);
+            holder.quantity = (TextView) convertView.findViewById(R.id.quantity_label);
+            holder.price = (TextView) convertView.findViewById(R.id.price_label);
+            holder.id = (TextView) convertView.findViewById(R.id.id_label);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
         final View listItemView = convertView;
         // have to declare this as final so that we can use it in inner anonymous class to build
         // the detail activity intent feature
         final InventoryItem currentInventoryItem = getItem(position);
 
-        // grab views to populate
-        TextView nameTextView = (TextView) listItemView.findViewById(R.id.name_label);
-        TextView quantityTextView = (TextView) listItemView.findViewById(R.id.quantity_label);
-        TextView priceTextView = (TextView) listItemView.findViewById(R.id.price_label);
-        TextView idTextView = (TextView) listItemView.findViewById(R.id.id_label);
+        if (currentInventoryItem == null) {
+            Log.w("getView:", "null InventoryItem pulled from database");
+            return listItemView;
+        }
 
         // populate appropriate fields of views
-        nameTextView.setText(currentInventoryItem.getName());
-        priceTextView.setText(String.format("%.2f", currentInventoryItem.getPrice()));
-        quantityTextView.setText(Integer.toString(currentInventoryItem.getQuantity()));
-        idTextView.setText(Integer.toString(currentInventoryItem.getId()));
+        holder.name.setText(currentInventoryItem.getName());
+        holder.price.setText(String.format("%.2f", currentInventoryItem.getPrice()));
+        holder.quantity.setText(Integer.toString(currentInventoryItem.getQuantity()));
+        holder.id.setText(Integer.toString(currentInventoryItem.getId()));
 
         // if a user clicks on the list item, open item details screen
         listItemView.setOnClickListener(new View.OnClickListener() {
@@ -76,5 +84,15 @@ public class InventoryItemAdapter extends ArrayAdapter<InventoryItem> {
         });
 
         return listItemView;
+    }
+
+    /**
+     * ViewHolder for Inventory list items.
+     */
+    static class ViewHolder {
+        TextView name;
+        TextView quantity;
+        TextView price;
+        TextView id;
     }
 }
