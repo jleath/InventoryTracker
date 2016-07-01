@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -114,5 +115,22 @@ public class InventoryDataController {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(InventoryContract.Inventory.TABLE_NAME, null, null);
         db.close();
+    }
+
+    public void insertN(Context context) {
+        new InsertNTask().execute(context);
+    }
+
+    private class InsertNTask extends AsyncTask<Context, Void, Integer> {
+        @Override
+        protected Integer doInBackground(Context... contexts) {
+            InventoryDataController controller = new InventoryDataController(contexts[0]);
+            int numToInsert = 1000;
+            for (int i = 0; i < 1000; ++i) {
+                InventoryItem item = new InventoryItem("Sample Name " + i, "Sample Supplier", "Sample Image", 50, 50);
+                controller.insert(item);
+            }
+            return numToInsert;
+        }
     }
 }

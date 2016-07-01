@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
                         Stetho.defaultInspectorModulesProvider(this))
                 .build();
 
+        InventoryDataController controller = new InventoryDataController(MainActivity.this);
+
+        controller.deleteAll();
+
+
         // build and hook in adapter
         new PopulateListViewTask().execute();
 
