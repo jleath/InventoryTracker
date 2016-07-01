@@ -1,6 +1,7 @@
 package com.example.android.inventorytracker;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.stetho.Stetho;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         // build and hook in adapter
-        populateListView();
+        new PopulateListViewTask().execute();
 
         // because other screens may change the data in our database, reload the items on the main screen
         // each time it gains focus
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                populateListView();
+                new PopulateListViewTask().execute();
             }
         });
 
@@ -49,16 +52,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Populates the listview on the mainactivity screen
-    private void populateListView() {
-        ListView lv = (ListView) findViewById(R.id.inventory_list);
-        InventoryItemAdapter adapter = new InventoryItemAdapter(MainActivity.this,
-                new InventoryDataController(MainActivity.this).readAll());
-        lv.setAdapter(adapter);
-        if (adapter.getCount() == 0) {
-            ((TextView) findViewById(R.id.no_data)).setVisibility(View.VISIBLE);
-        } else {
-            ((TextView) findViewById(R.id.no_data)).setVisibility(View.GONE);
+    private class PopulateListViewTask extends AsyncTask<Void, Void, ArrayList<InventoryItem>> {
+        @Override
+        protected ArrayList<InventoryItem> doInBackground(Void... voids) {
+            return new InventoryDataController(MainActivity.this).readAll();
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<InventoryItem> dbResults) {
+            ListView lv = (ListView) findViewById(R.id.inventory_list);
+            InventoryItemAdapter adapter = new InventoryItemAdapter(MainActivity.this, dbResults);
+            lv.setAdapter(adapter);
+            if (adapter.getCount() == 0) {
+                ((TextView) findViewById(R.id.no_data)).setVisibility(View.VISIBLE);
+            } else {
+                ((TextView) findViewById(R.id.no_data)).setVisibility(View.GONE);
+            }
         }
     }
 }
