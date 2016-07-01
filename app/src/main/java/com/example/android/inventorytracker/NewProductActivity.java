@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * Created by jleath on 6/28/2016.
+ * The Add New Product screen.
  */
 public class NewProductActivity extends AppCompatActivity {
 

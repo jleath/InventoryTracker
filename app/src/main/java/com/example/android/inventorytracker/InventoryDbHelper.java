@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by jleath on 6/28/2016.
+ * A helper class for database creation and access.
  */
 public class InventoryDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;

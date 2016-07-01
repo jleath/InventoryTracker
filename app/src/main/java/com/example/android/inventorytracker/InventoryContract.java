@@ -9,7 +9,9 @@ public final class InventoryContract {
     public InventoryContract() {
     }
 
-    /** Schema contract for the inventory table */
+    /**
+     * Schema contract for the inventory table
+     */
     public static abstract class Inventory implements BaseColumns {
         public static final String TABLE_NAME = "inventory";
         public static final String COLUMN_NAME_ID = "productid";

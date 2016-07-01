@@ -1,7 +1,7 @@
 package com.example.android.inventorytracker;
 
 /**
- * Created by jleath on 6/28/2016.
+ * An item in inventory. Each item has a name, price, id, quantity, and supplier's email.
  */
 public class InventoryItem {
 
@@ -40,12 +40,12 @@ public class InventoryItem {
         return mProductId;
     }
 
-    public int getQuantity() {
-        return mQuantity;
-    }
-
     public void setId(int id) {
         mProductId = id;
+    }
+
+    public int getQuantity() {
+        return mQuantity;
     }
 
     public String toString() {

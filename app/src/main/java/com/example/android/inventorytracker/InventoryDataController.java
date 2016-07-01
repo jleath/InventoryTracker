@@ -55,7 +55,7 @@ public class InventoryDataController {
      * Return an arraylist of all the InventoryItems stored in the database.
      */
     public ArrayList<InventoryItem> readAll() {
-        ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
+        ArrayList<InventoryItem> items = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT ROWID, * FROM " + InventoryContract.Inventory.TABLE_NAME;
         Cursor cursor = db.rawQuery(selectQuery, null);
